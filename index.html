@@ -18,6 +18,8 @@
       // 전달받은 incoming 값을 가져오기
       var incoming = getQueryParam("incoming"); // 예: ?incoming=전달받은값
 
+      var utcDate = new Date().toUTCString();
+
       // 기본 딥링크 URL
       var deeplinkUrl = "trenfit://"; // 기본 딥링크 URL
 
@@ -35,8 +37,13 @@
         deeplinkUrl += "&incoming=" + encodeURIComponent(incoming);
       }
 
+      deeplinkUrl +=
+        (deeplinkUrl.includes("?") ? "&" : "?") +
+        "tag=" +
+        encodeURIComponent(utcDate);
+
       var alertMessage =
-        "Seems like you have not installed the app. Do you want to continue?"; // 알림 메시지
+        "혹시 트렌핏을 설치하지 않으셨나요? 트렌핏 설치를 위해 스토어로 이동하시겠습니까?"; // 알림 메시지
       var change = false;
 
       setTimeout(() => {
@@ -48,15 +55,15 @@
 
           // iOS 디바이스인지 확인
           if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-            appStoreLink = "https://apps.apple.com/kr/app/youtube/id544007664"; // iOS 앱 스토어 링크
+            appStoreLink = "https://apps.apple.com/kr/app/id6670711155"; // iOS 앱 스토어 링크
           }
           // Android 디바이스인지 확인
           else if (/android/i.test(userAgent)) {
             appStoreLink =
-              "https://play.google.com/store/apps/details?id=com.google.android.youtube"; // Android 앱 스토어 링크
+              "https://play.google.com/store/apps/details?id=com.trenfit.trenfit"; // Android 앱 스토어 링크
           } else {
             appStoreLink =
-              "https://play.google.com/store/apps/details?id=com.google.android.youtube"; // 기타 디바이스 링크 (선택 사항)
+              "https://play.google.com/store/apps/details?id=com.trenfit.trenfit"; // 기타 디바이스 링크 (선택 사항)
           }
 
           // 사용자에게 알림 메시지 표시
