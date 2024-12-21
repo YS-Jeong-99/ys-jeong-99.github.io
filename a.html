@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Result</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center; /* 수평 중앙 정렬 */
+        align-items: center; /* 수직 중앙 정렬 */
+        height: 100vh; /* 전체 높이를 100%로 설정 */
+        margin: 0; /* 기본 마진 제거 */
+        background-color: #f9f9f9; /* 배경색 설정 (선택 사항) */
+      }
+
+      .center-form {
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: center; /* 수평 중앙 정렬 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+      }
+
+      .instruction-container {
+        display: flex;
+        flex-direction: column; /* 세로 방향으로 정렬 */
+        align-items: center; /* 수평 중앙 정렬 */
+        justify-content: center; /* 세로 중앙 정렬 */
+        width: 100%; /* 전체 너비 사용 */
+        max-width: 400px; /* 최대 너비 설정 (필요에 따라 조정) */
+        height: 200px; /* 높이 설정 (필요에 따라 조정) */
+      }
+
+      .instruction {
+        font-size: 16px; /* 텍스트 크기 */
+        color: #333; /* 텍스트 색상 */
+        margin-bottom: 10px; /* 버튼과의 간격 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+      }
+
+      .checkplus-button {
+        background-color: #ff7033; /* 버튼 배경색 */
+        color: white; /* 텍스트 색상 */
+        border: none; /* 테두리 제거 */
+        padding: 15px 32px; /* 상하, 좌우 여백 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+        font-size: 16px; /* 폰트 크기 */
+        cursor: pointer; /* 포인터 커서 */
+        border-radius: 4px; /* 모서리 둥글게 */
+        transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+        width: 60%; /* 버튼 너비를 100%로 설정 */
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form name="form_chk" method="post" class="center-form">
+      <input type="hidden" name="m" value="service" />
+      <input
+        type="hidden"
+        name="token_version_id"
+        value="<%=token_version_id%>"
+      />
+      <input type="hidden" name="enc_data" value="<%=enc_data%>" />
+      <input type="hidden" name="integrity_value" value="<%=integrity%>" />
+
+      <div class="instruction-container">
+        <div class="instruction">
+          본인인증 화면으로 전환이 되지 않으면 아래 버튼을 눌러주세요.
+        </div>
+        <button type="button" onclick="fnRedirect()" class="checkplus-button">
+          본인인증
+        </button>
+      </div>
+    </form>
+  </body>
+</html>
