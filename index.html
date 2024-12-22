@@ -168,12 +168,8 @@
       document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "hidden") {
           change = true;
-          document.getElementById("status-message").textContent =
-            "앱이 열렸습니다."; // 상태 메시지 업데이트
         } else if (document.visibilityState === "visible") {
           change = false;
-          document.getElementById("status-message").textContent =
-            "앱에서 돌아왔습니다."; // 상태 메시지 업데이트
         }
       });
 
