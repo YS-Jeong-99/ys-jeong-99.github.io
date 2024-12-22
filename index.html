@@ -94,6 +94,8 @@
       var route = getQueryParam("route"); // 예: ?id=전달받은값
       // 전달받은 id 값을 가져오기
       var id = getQueryParam("id"); // 예: ?id=전달받은값
+      // 전달받은 id 값을 가져오기
+      var index = getQueryParam("index"); // 예: ?id=전달받은값
       // 전달받은 incoming 값을 가져오기
       var incoming = getQueryParam("incoming"); // 예: ?incoming=전달받은값
       // 전달받은 incoming 값을 가져오기
@@ -112,6 +114,10 @@
 
       if (id) {
         deeplinkUrl += "?id=" + encodeURIComponent(id);
+      }
+
+      if (index) {
+        deeplinkUrl += "&index=" + encodeURIComponent(index);
       }
 
       if (incoming) {
@@ -157,14 +163,16 @@
           // 사용자에게 알림 메시지 표시
           window.location.href = appStoreLink; // 해당 앱 스토어 링크로 이동
         }
-      }, 1000);
+      }, 3000);
 
       window.onblur = function () {
         change = true; // 앱이 열렸을 경우
+        console.log("blur");
       };
 
       window.onfocus = function () {
         change = false; // 앱에서 돌아왔을 경우
+        console.log("focus");
       };
 
       function goToTheApp() {
