@@ -163,17 +163,29 @@
           // 사용자에게 알림 메시지 표시
           window.location.href = appStoreLink; // 해당 앱 스토어 링크로 이동
         }
-      }, 3000);
+      }, 2000);
 
-      window.onblur = function () {
-        change = true; // 앱이 열렸을 경우
-        console.log("blur");
-      };
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "hidden") {
+          change = true;
+          document.getElementById("status-message").textContent =
+            "앱이 열렸습니다."; // 상태 메시지 업데이트
+        } else if (document.visibilityState === "visible") {
+          change = false;
+          document.getElementById("status-message").textContent =
+            "앱에서 돌아왔습니다."; // 상태 메시지 업데이트
+        }
+      });
 
-      window.onfocus = function () {
-        change = false; // 앱에서 돌아왔을 경우
-        console.log("focus");
-      };
+      // window.onblur = function () {
+      //   change = true; // 앱이 열렸을 경우
+      //   console.log("blur");
+      // };
+
+      // window.onfocus = function () {
+      //   change = false; // 앱에서 돌아왔을 경우
+      //   console.log("focus");
+      // };
 
       function goToTheApp() {
         window.location = deeplinkUrl;
